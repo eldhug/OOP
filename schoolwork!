@@ -1,0 +1,78 @@
+import math
+
+class Expression():
+
+    def eval(self) -> float:
+        pass       
+
+class Constant(Expression):
+    def __init__(self, value):
+        self.value = value
+        
+    def eval(self) -> float:
+        return self.value
+
+    def __str__(self):
+        return str(self.value)
+
+class UnaryExpression(Expression):
+    def __init__(self, operand):
+        self.operand = operand
+        
+        
+class BinaryExpression(Expression):
+    def __init__(self, operand1, operand2):
+        self.operand1 = operand1
+        self.operand2 = operand2
+        
+class PlusExpression(BinaryExpression):
+    def __init__(self, operand1, operand2):
+        super().__init__(operand1, operand2)
+        
+    def eval(self) -> float:
+        return self.operand1.eval() + self.operand2.eval()
+    
+    def __str__(self):
+        return f"({self.operand1}) + ({self.operand2})"
+
+class MinusExpression(BinaryExpression):
+    def __init__(self, operand1, operand2):
+        super().__init__(operand1, operand2)
+        
+    def eval(self):
+        return self.operand1.eval() - self.operand2.eval()
+    
+    def __str__(self):
+        return f"({self.operand1}) - ({self.operand2})"
+    
+class MultiplyExpression(BinaryExpression):
+    def __init__(self, operand1, operand2):
+        super().__init__(operand1, operand2)
+        
+    def eval(self):
+        return self.operand1.eval() * self.operand2.eval()
+    
+    def __str__(self):
+        return f"({self.operand1}) * ({self.operand2})"
+    
+class DivideExpression(BinaryExpression):
+    def __init__(self, operand1, operand2):
+        super().__init__(operand1, operand2)
+        
+    def eval(self) -> float:
+        return self.operand1.eval() / self.operand2.eval()
+    
+    def __str__(self):
+         return f"({self.operand1}) / ({self.operand2})"
+
+        
+if __name__ == '__main__':
+    One = Constant(1)
+    Two = Constant(2)
+    Three = Constant(3)
+    Pi = Constant(math.pi)
+    
+#expr1 = MultiplyExpression(MultiplyExpression(Three, Three), Pi)
+
+#print(expr1)
+#print(expr1.eval())
